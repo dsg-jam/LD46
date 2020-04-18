@@ -1,11 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/PlayerMovement.gd" type="Script" id=1]
+[ext_resource path="res://assets/1-Bit pack/Tilesheet without margin/colored.png" type="Texture" id=2]
 
 [sub_resource type="GradientTexture" id=1]
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 14.2373
+
+[sub_resource type="TileSet" id=3]
+0/name = "colored.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 288, 112 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,3 +46,8 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
