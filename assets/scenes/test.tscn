@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/scripts/PlayerMovement.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/animations/companion.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://assets/textures/tilesets/map.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/textures/player/idle.tres" type="Texture" id=4]
+[ext_resource path="res://assets/scripts/Resource.gd" type="Script" id=5]
+[ext_resource path="res://assets/textures/resources/tree_1.tres" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -12,6 +14,13 @@ height = 3.25
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 2.0
 height = 5.0
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 2.0
+height = 5.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 13.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -69,3 +78,24 @@ shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Resource" type="Node2D" parent="."]
+position = Vector2( -50, 0 )
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Resource"]
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Resource"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Resource/StaticBody2D"]
+position = Vector2( 0, 3 )
+shape = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="Resource"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Resource/Area2D"]
+shape = SubResource( 3 )
