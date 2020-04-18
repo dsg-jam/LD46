@@ -22,7 +22,7 @@ func read_input() -> Vector2:
 
 func _physics_process(_delta: float) -> void:
 	var velocity := read_input() * speed
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 	
 	if animation_controller:
 		animation_controller.set_velocity_vector(velocity)
