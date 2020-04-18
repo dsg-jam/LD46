@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed := 80
+export var speed: float = 80
 
 # reference to SimpleAnimationController.gd
 var animation_controller
