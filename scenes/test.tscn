@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/tilemaps/colored.tres" type="TileSet" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 8.0
+radius = 2.0
+height = 5.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,12 +22,15 @@ tile_data = PoolIntArray( -1179680, 0, 0, -1179679, 0, 0, -1179678, 0, 0, -11796
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
-scale = Vector2( 0.0124089, 0.0524763 )
+scale = Vector2( 0.007, 0.025 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 0, 3.565 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+zoom = Vector2( 0.3, 0.3 )
 smoothing_enabled = true
