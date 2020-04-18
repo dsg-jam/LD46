@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LD46"
-run/main_scene="res://scenes/test.tscn"
+run/main_scene="res://assets/scenes/test.tscn"
 config/icon="res://icon.png"
 
 [input]
@@ -59,4 +59,5 @@ player_mine={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.278431, 0.176471, 0.235294, 1 )
 environment/default_environment="res://default_env.tres"
