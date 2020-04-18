@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/monochrome.png-b5287955ec2d51f995e4b26d6aa79214.stex"
+path="res://.import/colored.png-b46582688348b2582c2132b04258edde.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/1-Bit pack/Tilesheet without margin/monochrome.png"
-dest_files=[ "res://.import/monochrome.png-b5287955ec2d51f995e4b26d6aa79214.stex" ]
+source_file="res://assets/colored.png"
+dest_files=[ "res://.import/colored.png-b46582688348b2582c2132b04258edde.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
