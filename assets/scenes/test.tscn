@@ -15,11 +15,11 @@ height = 3.25
 radius = 2.0
 height = 5.0
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 2.0
 height = 5.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 13.0
 
 [node name="Node2D" type="Node2D"]
@@ -90,12 +90,24 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Resource"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Resource/StaticBody2D"]
 position = Vector2( 0, 3 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Area2D" type="Area2D" parent="Resource"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Resource/Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
