@@ -5,7 +5,7 @@ export var build_distance: float = 20
 
 export var resources_for_turret := { wood = 0 }
 
-var turret_prefab = preload("res://assets/prefabs/Enemy.tscn")
+var turret_prefab = preload("res://assets/prefabs/Turret_1.tscn")
 
 var interaction_area: Area2D
 

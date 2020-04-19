@@ -15,7 +15,7 @@ export var upgrade_cost = {"wood": 0, "stone": 0, "iron": 0}
 var turrets = [load("res://assets/prefabs/Turret_2.tscn"), load("res://assets/prefabs/Turret_3.tscn")]
 var bullets = [preload("res://assets/prefabs/Bullet_1.tscn"), preload("res://assets/prefabs/Bullet_2.tscn"), preload("res://assets/prefabs/Bullet_3.tscn")]
 
-var bullet_selection = math_utils.prepare({0: bullet_1_range, 1: bullet_2_range, 2: bullet_3_range})
+var bullet_selection = math_utils.prepare_weighted_selection({0: bullet_1_range, 1: bullet_2_range, 2: bullet_3_range})
 
 var rng := RandomNumberGenerator.new()
 
