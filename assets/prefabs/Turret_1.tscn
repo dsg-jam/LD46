@@ -10,7 +10,9 @@ height = 7.6501
 [sub_resource type="CircleShape2D" id=2]
 radius = 50.0
 
-[node name="Turret" type="KinematicBody2D"]
+[node name="Turret" type="KinematicBody2D" groups=[
+"turrets",
+]]
 position = Vector2( 50, 0 )
 script = ExtResource( 2 )
 upgrade_cost = {

@@ -17,6 +17,7 @@ func _physics_process(delta):
 				queue_free()
 			elif collider.is_in_group("resources"):
 				collider.get_parent().remove()
+				queue_free()
 	else:
 		queue_free()
 

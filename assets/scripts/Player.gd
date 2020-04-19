@@ -5,7 +5,7 @@ export var build_distance: float = 20
 
 export var resources_for_turret := { wood = 0 }
 
-var turret_prefab = preload("res://assets/prefabs/Turret_1.tscn")
+var turrets_prefab = [preload("res://assets/prefabs/Turret_1.tscn"), preload("res://assets/prefabs/Turret_2.tscn"), preload("res://assets/prefabs/Turret_3.tscn")]
 
 var interaction_area: Area2D
 
@@ -63,7 +63,7 @@ func mine_area() -> void:
 		break
 
 func spawn_turret() -> void:
-	var turret = turret_prefab.instance()
+	var turret = turrets_prefab[0].instance()
 	turret.position = self.position + look_direction * build_distance
 	get_tree().current_scene.add_child(turret)
 
@@ -77,7 +77,23 @@ func has_items(items: Dictionary) -> bool:
 	
 	return true
 
+func try_upgrade_turret(turret) -> void:
+	if turret.level <= 2:
+		var node: Node2D = turrets_prefab[turret.level].instance()
+		node.position = turret.position
+		turret.queue_free()
+		get_tree().current_scene.add_child(node)
+	else:
+		print("This turret already has lvl 3 :)")
+		return
+
 func try_build_turret() -> void:
+	for body in interaction_area.get_overlapping_bodies():
+		if !body.is_in_group("turrets"):
+			continue
+		var turret = body
+		try_upgrade_turret(turret)
+		return
 	if has_items(resources_for_turret):
 		spawn_turret()
 

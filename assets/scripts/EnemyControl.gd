@@ -34,7 +34,8 @@ func _physics_process(delta):
 			else:
 				time_combat += delta
 	else:
-		print("You've lost the game. Companion died :(")
+		pass
+		#print("You've lost the game. Companion died :(")
 		#queue_free()
 
 
