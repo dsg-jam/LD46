@@ -12,7 +12,6 @@ func _ready():
 
 func reduce_health(amount):
 	health -= amount
-	print(health)
 	if health <= 0:
 		return false
 	return true

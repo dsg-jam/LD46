@@ -5,11 +5,6 @@ export var damage = 10
 
 var enemy_body
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 func _physics_process(delta):
 	var dir = (enemy_body.position - position).normalized()
 	var is_collision = move_and_collide(dir*speed*delta)
