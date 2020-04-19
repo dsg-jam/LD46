@@ -3,8 +3,6 @@ extends KinematicBody2D
 export var speed_mult: float = 80
 export var build_distance: float = 14
 
-export var resources_for_turret := { wood = 0 }
-
 var turrets_prefab = [preload("res://assets/prefabs/Turret_1.tscn"), preload("res://assets/prefabs/Turret_2.tscn"), preload("res://assets/prefabs/Turret_3.tscn")]
 
 var interaction_area: Area2D
@@ -95,7 +93,7 @@ func try_upgrade_turret(turret) -> void:
 		else:
 			print("Not enough items")
 	else:
-		print("This turret already has lvl 3 :)")
+		print("This turret has already lvl 3 :)")
 		return
 
 func try_build_turret() -> void:
