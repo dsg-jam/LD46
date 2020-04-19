@@ -7,6 +7,8 @@ var interaction_area: Area2D
 # reference to SimpleAnimationController.gd
 var animation_controller
 
+const inventory := {}
+
 func _ready() -> void:
 	interaction_area = $InteractionArea
 	animation_controller = $AnimatedSprite
@@ -31,8 +33,10 @@ func _physics_process(_delta: float) -> void:
 		animation_controller.set_velocity_vector(velocity)
 
 func mine_resource(resource) -> void:
+	var resource_type: String = resource.resource_type
 	var collected: int = resource.collect()
-	print("collected ", collected, " resource(s)")
+	print("collected ", collected, " resource(s) of type ", resource_type)
+	inventory[resource_type] = inventory.get(resource_type, 0) + collected
 
 func mine_area() -> void:
 	for body in interaction_area.get_overlapping_bodies():
