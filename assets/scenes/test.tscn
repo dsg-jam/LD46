@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/frames/companion.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://assets/textures/tilesets/map.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/textures/player/idle.tres" type="Texture" id=4]
 [ext_resource path="res://assets/scripts/SimpleAnimationController.gd" type="Script" id=5]
-[ext_resource path="res://assets/scripts/ResourceManager.gd" type="Script" id=6]
+[ext_resource path="res://assets/scripts/Manager.gd" type="Script" id=6]
+[ext_resource path="res://assets/scripts/CompanionControl.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -31,17 +32,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ResourceManager" type="Node" parent="."]
+[node name="Manager" type="Node" parent="."]
 script = ExtResource( 6 )
 spawn_radius_min = 100.0
 spawn_radius_max = 150.0
 
-[node name="Timer" type="Timer" parent="ResourceManager"]
+[node name="Timer" type="Timer" parent="Manager"]
 autostart = true
 
 [node name="Companion" type="KinematicBody2D" parent="."]
 position = Vector2( -19, -3 )
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Companion"]
 frames = ExtResource( 2 )
@@ -97,4 +98,4 @@ shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
-[connection signal="timeout" from="ResourceManager/Timer" to="ResourceManager" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Manager/Timer" to="Manager" method="_on_Timer_timeout"]

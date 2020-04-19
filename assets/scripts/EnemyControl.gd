@@ -9,6 +9,7 @@ var time_combat = INF # Time since last damage
 var is_companion_alive = true
 
 var rng = RandomNumberGenerator.new()
+var companion
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,13 +17,11 @@ func _ready():
 	rng.randomize()
 	var select_frame = rng.randi_range(0, count_frames-1)
 	$Sprite.set_frame(select_frame)
-	pass
-
-
+	companion = get_tree().current_scene.get_node("Companion")
 
 func _physics_process(delta):
 	if is_companion_alive:
-		var dir = ($"../Companion".position - position).normalized()
+		var dir = (companion.position - position).normalized()
 		var is_collision = move_and_collide(dir*speed*delta)
 
 		if is_collision:

@@ -7,7 +7,9 @@
 radius = 7.05161
 height = 2.25473
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=[
+"enemies",
+]]
 position = Vector2( 395.98, 150.946 )
 script = ExtResource( 2 )
 
