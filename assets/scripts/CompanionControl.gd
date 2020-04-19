@@ -17,7 +17,7 @@ func reduce_health(amount):
 	return true
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#var dir = Vector2(rng.randi_range(-10,10), rng.randi_range(-10,10)).normalized()
 	#move_and_collide(dir*speed*delta)
 	pass

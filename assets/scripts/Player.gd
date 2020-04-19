@@ -15,9 +15,14 @@ var animation_controller
 const inventory := {}
 var look_direction: Vector2
 
+func maybe_get_node(path: NodePath) -> Node:
+	if has_node(path):
+		return get_node(path)
+	return null
+
 func _ready() -> void:
 	interaction_area = $InteractionArea
-	animation_controller = $AnimatedSprite
+	animation_controller = maybe_get_node("AnimatedSprite")
 
 func read_input() -> Vector2:
 	var input := Vector2()

@@ -8,7 +8,7 @@ static func prepare_weighted_selection(values: Dictionary) -> Array:
 	return selection
 
 static func rand_selection_weighted(rng: RandomNumberGenerator, selection: Array):
-	var select := rng.randi_range(1, floor(selection[-1][1]))
+	var select := rng.randi_range(1, floor(selection[-1][1]) as int)
 	for tup in selection:
 		if select <= tup[1]:
 			return tup[0]
