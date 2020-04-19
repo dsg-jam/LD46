@@ -12,6 +12,7 @@ position = Vector2( 395.98, 150.946 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, 0 )
 texture = ExtResource( 1 )
 hframes = 6
 

@@ -4,6 +4,8 @@ var health = 100
 var damage = 1
 var speed = 50
 var rng = RandomNumberGenerator.new()
+var time_combat = INF # Time since last damage
+var combat_speed = 1 # Time interval in which enemy hurts the companion
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,4 +24,9 @@ func _physics_process(delta):
 	var is_collision = move_and_collide(dir*speed*delta)
 
 	if is_collision:
-		print("Companion lost a health unit")
+		var collider = is_collision.get_collider()
+		if collider.get_name() == "Companion" and time_combat >= combat_speed:
+			collider.reduce_health(1)
+			time_combat = 0
+		else:
+			time_combat += delta
