@@ -4,7 +4,7 @@ const math_utils := preload("math_utils.gd")
 
 export var spawn_radius_min: float
 export var spawn_radius_max: float
-export var max_enemies: int = 50
+export var max_enemies: int = 10
 export var max_resources: int = 50
 
 const resource_prefab := preload("res://assets/prefabs/Resource.tscn")

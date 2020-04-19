@@ -35,4 +35,12 @@ func _physics_process(delta):
 				time_combat += delta
 	else:
 		print("You've lost the game. Companion died :(")
-		queue_free()
+		#queue_free()
+
+
+func reduce_health(amount):
+	health -= amount
+	print(health)
+	if health <= 0:
+		return false
+	return true
