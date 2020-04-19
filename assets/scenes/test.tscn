@@ -31,7 +31,7 @@ __meta__ = {
 }
 
 [node name="Companion" type="KinematicBody2D" parent="."]
-position = Vector2( -20, 0 )
+position = Vector2( -20, -3 )
 script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Companion"]
