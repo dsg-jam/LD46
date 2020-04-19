@@ -1,23 +1,30 @@
 extends KinematicBody2D
 
-export (int) var speed = 80
+export var speed: float = 80
 
-var velocity = Vector2()
+# reference to SimpleAnimationController.gd
+var animation_controller
 
-func get_input():
-	velocity = Vector2()
+func _ready() -> void:
+	animation_controller = $AnimatedSprite
+
+func read_input() -> Vector2:
+	var input := Vector2()
 	if Input.is_action_pressed('player_right'):
-		velocity.x += 1
+		input.x += 1
 	if Input.is_action_pressed('player_left'):
-		velocity.x -= 1
+		input.x -= 1
 	if Input.is_action_pressed('player_down'):
-		velocity.y += 1
+		input.y += 1
 	if Input.is_action_pressed('player_up'):
-		velocity.y -= 1
-	velocity = velocity.normalized() * speed
+		input.y -= 1
+	return input.normalized()
 
-func _physics_process(_delta):
-	get_input()
-	move_and_slide(velocity)
+func _physics_process(_delta: float) -> void:
+	var velocity := read_input() * speed
+	velocity = move_and_slide(velocity)
+	
+	if animation_controller:
+		animation_controller.set_velocity_vector(velocity)
 	
 	
