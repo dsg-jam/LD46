@@ -15,6 +15,8 @@ export var upgrade_cost = {"wood": 0, "stone": 0, "iron": 0}
 var turrets = [load("res://assets/prefabs/Turret_2.tscn"), load("res://assets/prefabs/Turret_3.tscn")]
 var bullets = [preload("res://assets/prefabs/Bullet_1.tscn"), preload("res://assets/prefabs/Bullet_2.tscn"), preload("res://assets/prefabs/Bullet_3.tscn")]
 
+var bullet_selection = math_utils.prepare({0: bullet_1_range, 1: bullet_2_range, 2: bullet_3_range})
+
 var rng := RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -36,7 +38,7 @@ func turret_area() -> void:
 		if !resource:
 			continue
 		
-		var bullet_select = math_utils.rand_selection_weighted(rng, {0: bullet_1_range, 1: bullet_2_range, 2: bullet_3_range})
+		var bullet_select = math_utils.rand_selection_weighted(rng, bullet_selection)
 		create_bullet(bullet_select, body)
 		break
 		
