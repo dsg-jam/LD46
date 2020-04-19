@@ -38,7 +38,7 @@ func mine_area() -> void:
 	for body in interaction_area.get_overlapping_bodies():
 		if !body.is_in_group("resources"):
 			continue
-			
+
 		var resource = body.get_parent()
 		if !resource:
 			continue
