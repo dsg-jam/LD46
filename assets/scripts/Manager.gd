@@ -51,6 +51,7 @@ func _on_Resource_tree_exiting() -> void:
 func spawn_resource(pos: Vector2) -> void:
 	var node: Node2D = resource_prefab.instance()
 	node.position = pos
+	node.init_random(rng)
 	
 	# handle removing the resource
 	node.connect("tree_exiting", self, "_on_Resource_tree_exiting")
