@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var speed_mult: float = 80
-export var build_distance: float = 20
+export var build_distance: float = 14
 
 export var resources_for_turret := { wood = 0 }
 
