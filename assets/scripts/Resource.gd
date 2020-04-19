@@ -36,6 +36,9 @@ func _on_fade_out_finished(_name: String) -> void:
 	queue_free()
 
 func remove() -> void:
+	# remove collider immediately to avoid repeated detections
+	$StaticBody2D.free()
+
 	animation_player.connect("animation_finished", self, "_on_fade_out_finished")
 	animation_player.play_backwards("fade_in")
 
@@ -68,8 +71,6 @@ func init_random(rng: RandomNumberGenerator) -> void:
 	init(type, texture, rng.randi_range(1, 5))
 
 func collect() -> int:
-	# remove collider immediately to avoid repeated detections
-	$StaticBody2D.free()
 	remove()
 
 	return self.resource_amount
