@@ -1,6 +1,6 @@
 extends Node
 
-var enemy_path = "res://assets/prefab/Enemy.tscn"
+var enemy_path = "res://assets/prefabs/Enemy.tscn"
 #var resource_path = "res://assets/prefab/Resource.tscn"
 var rng = RandomNumberGenerator.new()
 

@@ -1,15 +1,13 @@
 extends KinematicBody2D
 
 export var health = 100
+export var speed = 10
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	rng.randomize()
 
 
 func reduce_health(amount):
@@ -19,6 +17,8 @@ func reduce_health(amount):
 		return false
 	return true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func _physics_process(delta):
+	#var dir = Vector2(rng.randi_range(-10,10), rng.randi_range(-10,10)).normalized()
+	#move_and_collide(dir*speed*delta)
+	pass

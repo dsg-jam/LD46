@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/textures/tilesets/map.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/textures/player/idle.tres" type="Texture" id=4]
 [ext_resource path="res://assets/scripts/SpawnControl.gd" type="Script" id=5]
-[ext_resource path="res://assets/scenes/CompanionControl.gd" type="Script" id=6]
+[ext_resource path="res://assets/scripts/CompanionControl.gd" type="Script" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -31,7 +31,7 @@ __meta__ = {
 }
 
 [node name="Companion" type="KinematicBody2D" parent="."]
-position = Vector2( -20, -3 )
+position = Vector2( -19, -3 )
 script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Companion"]
