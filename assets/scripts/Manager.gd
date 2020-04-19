@@ -20,7 +20,6 @@ var enemy_count := 0
 
 func _on_Enemy_tree_exiting() -> void:
 	enemy_count -= 1
-	print("enemies in world: ", enemy_count)
 
 func spawn_enemy(pos: Vector2) -> void:
 	var node: Node2D = enemy_prefab.instance()
@@ -45,7 +44,6 @@ var resource_count := 0
 
 func _on_Resource_tree_exiting() -> void:
 	resource_count -= 1
-	print("resources in world: ", resource_count)
 
 # Spawn a resource at the given position.
 func spawn_resource(pos: Vector2) -> void:
