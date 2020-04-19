@@ -10,6 +10,7 @@ var is_companion_alive = true
 
 var rng = RandomNumberGenerator.new()
 var companion
+var animation_player: AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +19,7 @@ func _ready():
 	var select_frame = rng.randi_range(0, count_frames-1)
 	$Sprite.set_frame(select_frame)
 	companion = get_tree().current_scene.get_node("Companion")
+	animation_player = $AnimationPlayer
 
 func _physics_process(delta):
 	if is_companion_alive:
@@ -37,10 +39,11 @@ func _physics_process(delta):
 		print("You've lost the game. Companion died :(")
 		#queue_free()
 
-
 func reduce_health(amount):
 	health -= amount
-	print(health)
 	if health <= 0:
 		return false
+	
+	animation_player.stop(true)
+	animation_player.play("take_damage")
 	return true
