@@ -18,6 +18,8 @@ height = 5.0
 [node name="Node2D" type="Node2D"]
 position = Vector2( -1, 1 )
 script = ExtResource( 5 )
+spawn_radius_min = 100.0
+spawn_radius_max = 500.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -74,3 +76,7 @@ shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

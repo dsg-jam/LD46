@@ -32,7 +32,6 @@ func _physics_process(delta):
 					time_combat = 0
 				else:
 					is_companion_alive = false
-					collider.queue_free()
 			else:
 				time_combat += delta
 	else:
