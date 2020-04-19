@@ -4,7 +4,6 @@ const math_utils := preload("math_utils.gd")
 
 export var health = 100
 export var level = 1
-export var combat_speed = 1
 export var bullet_1_range = 20
 export var bullet_2_range = 5
 export var bullet_3_range = 1
