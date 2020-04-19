@@ -52,3 +52,27 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("player_mine"):
 		mine_area()
 		return
+
+#func upgrade_resources(available_resources) -> bool:
+#	if level <= 2:
+#		if available_resources["wood"] >= upgrade_cost["wood"] and available_resources["stone"] >= upgrade_cost["stone"] and available_resources["iron"] >= upgrade_cost["iron"]:
+#			return true
+#		else:
+#			# "Not enough resources"
+#			return false
+#	else:
+#		# "Turret already has max level"
+#		return false
+#
+#
+#func upgrade_turret(available_resources) -> bool:
+#	if upgrade_resources(available_resources):
+#		level += 1
+#		var node: Node2D = turrets[level-2].instance()
+#		node.position = position
+#		queue_free()
+#		get_tree().current_scene.add_child(node)
+#		return true
+#	else:
+#		# "Try again :)"
+#		return false

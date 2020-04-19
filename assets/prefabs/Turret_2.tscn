@@ -13,6 +13,16 @@ radius = 125.0
 [node name="Turret" type="KinematicBody2D"]
 position = Vector2( 50, 0 )
 script = ExtResource( 2 )
+level = 2
+combat_speed = 2
+bullet_1_range = 15
+bullet_2_range = 10
+bullet_3_range = 5
+upgrade_cost = {
+"iron": 0,
+"stone": 10,
+"wood": 25
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
