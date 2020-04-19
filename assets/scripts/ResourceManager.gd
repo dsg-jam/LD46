@@ -14,8 +14,8 @@ var resource_count := 0
 # this means that even if a resource is deleted by something or someone else
 # we can still keep an accurate count of the resources in the world. 
 func _on_Resource_tree_exiting() -> void:
-	print_debug("resource removed")
 	resource_count -= 1
+	print("resources in world: ", resource_count)
 
 # Spawn a resource at the given position.
 func spawn_resource(pos: Vector2) -> void:
