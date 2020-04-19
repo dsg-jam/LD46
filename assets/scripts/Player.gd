@@ -62,11 +62,6 @@ func mine_area() -> void:
 		# only allow mining one resource at a time
 		break
 
-func spawn_turret() -> void:
-	var turret = turrets_prefab[0].instance()
-	turret.position = self.position + look_direction * build_distance
-	get_tree().current_scene.add_child(turret)
-
 func has_item(name: String, count: int) -> bool:
 	return self.inventory.get(name, 0) >= count
 
@@ -77,12 +72,23 @@ func has_items(items: Dictionary) -> bool:
 	
 	return true
 
+func spawn_turret() -> void:
+	var turret = turrets_prefab[0].instance()
+	if has_items(turret.upgrade_cost):
+		turret.position = self.position + look_direction * build_distance
+		get_tree().current_scene.add_child(turret)
+	else:
+		print("Not enough items")
+
 func try_upgrade_turret(turret) -> void:
 	if turret.level <= 2:
 		var node: Node2D = turrets_prefab[turret.level].instance()
-		node.position = turret.position
-		turret.queue_free()
-		get_tree().current_scene.add_child(node)
+		if has_items(node.upgrade_cost):
+			node.position = turret.position
+			turret.queue_free()
+			get_tree().current_scene.add_child(node)
+		else:
+			print("Not enough items")
 	else:
 		print("This turret already has lvl 3 :)")
 		return
@@ -94,8 +100,7 @@ func try_build_turret() -> void:
 		var turret = body
 		try_upgrade_turret(turret)
 		return
-	if has_items(resources_for_turret):
-		spawn_turret()
+	spawn_turret()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("player_mine"):
