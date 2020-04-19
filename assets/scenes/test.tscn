@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/scripts/PlayerMovement.gd" type="Script" id=1]
-[ext_resource path="res://assets/textures/animations/companion.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://assets/textures/frames/companion.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://assets/textures/tilesets/map.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/textures/player/idle.tres" type="Texture" id=4]
-[ext_resource path="res://assets/scripts/Resource.gd" type="Script" id=5]
-[ext_resource path="res://assets/textures/resources/tree_1.tres" type="Texture" id=6]
+[ext_resource path="res://assets/scripts/ResourceManager.gd" type="Script" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -15,14 +14,7 @@ height = 3.25
 radius = 2.0
 height = 5.0
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 2.0
-height = 5.0
-
-[sub_resource type="CircleShape2D" id=4]
-radius = 13.0
-
-[node name="Node2D" type="Node2D"]
+[node name="Test" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -34,6 +26,14 @@ tile_data = PoolIntArray( -1179680, 0, 0, -1179679, 0, 0, -1179678, 0, 0, -11796
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="ResourceManager" type="Node" parent="."]
+script = ExtResource( 6 )
+spawn_radius_min = 100.0
+spawn_radius_max = 150.0
+
+[node name="Timer" type="Timer" parent="ResourceManager"]
+autostart = true
 
 [node name="Companion" type="KinematicBody2D" parent="."]
 position = Vector2( -20, 0 )
@@ -78,36 +78,4 @@ shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Resource" type="Node2D" parent="."]
-position = Vector2( -50, 0 )
-script = ExtResource( 5 )
-
-[node name="Sprite" type="Sprite" parent="Resource"]
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Resource"]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Resource/StaticBody2D"]
-position = Vector2( 0, 3 )
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Area2D" type="Area2D" parent="Resource"]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Resource/Area2D"]
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[connection signal="timeout" from="ResourceManager/Timer" to="ResourceManager" method="_on_Timer_timeout"]
