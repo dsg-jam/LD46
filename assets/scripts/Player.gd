@@ -85,7 +85,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("player_mine"):
 		mine_area()
 		return
-	
+
 	if event.is_action_released("player_place_turret"):
 		try_build_turret()
 		return
