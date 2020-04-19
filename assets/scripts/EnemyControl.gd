@@ -8,10 +8,9 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var count_frames = $Sprite.get_hframes() + $Sprite.get_vframes()
+	var count_frames = $Sprite.get_hframes() * $Sprite.get_vframes()
 	rng.randomize()
 	var select_frame = rng.randi_range(0, count_frames-1)
-	print(select_frame)
 	$Sprite.set_frame(select_frame)
 	pass
 
