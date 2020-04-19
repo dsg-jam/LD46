@@ -8,6 +8,7 @@ export var bullet_1_range = 20
 export var bullet_2_range = 5
 export var bullet_3_range = 1
 export var radius = 5
+export var companion_position = Vector2(0, 0)
 
 export var upgrade_cost = {"wood": 0, "stone": 0, "iron": 0}
 
@@ -32,40 +33,14 @@ func turret_area() -> void:
 		if !body.is_in_group("enemies"):
 			continue
 
-		var resource = body.get_parent()
-		if !resource:
-			continue
+		var enemy = body
+		companion_position = enemy.target_position
+		enemy.target_position = position
 		
 		var bullet_select = math_utils.rand_selection_weighted(rng, bullet_selection)
 		create_bullet(bullet_select, body)
 		break
 		
-
-
-# Returns true if there are enough resources to upgrade the turret
-#func upgrade_resources(available_resources) -> bool:
-#	if level <= 2:
-#		if available_resources["wood"] >= upgrade_cost["wood"] and available_resources["stone"] >= upgrade_cost["stone"] and available_resources["iron"] >= upgrade_cost["iron"]:
-#			return true
-#		else:
-#			# "Not enough resources"
-#			return false
-#	else:
-#		# "Turret already has max level"
-#		return false
-#
-#
-#func upgrade_turret(available_resources) -> bool:
-#	if upgrade_resources(available_resources):
-#		level += 1
-#		var node: Node2D = turrets[level-2].instance()
-#		node.position = position
-#		queue_free()
-#		get_tree().current_scene.add_child(node)
-#		return true
-#	else:
-#		# "Try again :)"
-#		return false
 
 
 func _on_Timer_timeout():
