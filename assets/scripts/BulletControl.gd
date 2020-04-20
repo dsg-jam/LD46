@@ -13,8 +13,7 @@ func handle_collision(collision: KinematicCollision2D) -> void:
 
 	var collider = collision.get_collider()
 	if collider.is_in_group("enemies"):
-		if not collider.reduce_health(damage):
-			collider.queue_free()
+		collider.health_bar.reduce_health(damage)
 		queue_free()
 	elif collider.is_in_group("resources"):
 		collider.get_parent().remove()
