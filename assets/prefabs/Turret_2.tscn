@@ -58,7 +58,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 autostart = true
 
 [node name="UpgradeDisplay" parent="." instance=ExtResource( 3 )]

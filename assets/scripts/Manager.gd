@@ -11,6 +11,7 @@ export var enemy_zone_radius: float
 export var enemy_spawn_safe_time: float
 export var enemy_spawn_increase_exponent: float
 export var enemy_spawn_increase_base: float
+export var enemy_spawn_increase_offset: float
 
 var noise := OpenSimplexNoise.new()
 
@@ -46,7 +47,7 @@ func get_player_view_radius() -> float:
 	return max(size.x, size.y) / 2.0
 
 func get_max_enemies(secs: float) -> int:
-	return pow(enemy_spawn_increase_base, enemy_spawn_increase_exponent * secs) as int
+	return (enemy_spawn_increase_offset + pow(enemy_spawn_increase_base, enemy_spawn_increase_exponent * secs)) as int
 
 # Spawn a resource if the resource limit hasn't been reached.
 func maybe_spawn_enemy() -> void:
