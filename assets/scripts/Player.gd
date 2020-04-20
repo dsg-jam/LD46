@@ -10,6 +10,8 @@ var interaction_area: Area2D
 # reference to SimpleAnimationController.gd
 var animation_controller
 
+var inventory_ui_manager
+
 const inventory := {}
 var look_direction: Vector2
 
@@ -21,6 +23,9 @@ func maybe_get_node(path: NodePath) -> Node:
 func _ready() -> void:
 	interaction_area = $InteractionArea
 	animation_controller = maybe_get_node("AnimatedSprite")
+	
+	var current_scene = get_tree().current_scene
+	inventory_ui_manager = current_scene.get_node("CanvasLayer/InventoryUI")
 
 func read_input() -> Vector2:
 	var input := Vector2()
@@ -50,7 +55,9 @@ func mine_resource(resource) -> void:
 	var resource_type: String = resource.resource_type
 	var collected: int = resource.collect()
 	print("collected ", collected, " resource(s) of type ", resource_type)
-	inventory[resource_type] = inventory.get(resource_type, 0) + collected
+	var new_count: int = inventory.get(resource_type, 0) + collected
+	inventory[resource_type] = new_count
+	inventory_ui_manager.update_item_count(resource_type, new_count)
 
 func mine_area() -> void:
 	for body in interaction_area.get_overlapping_bodies():
