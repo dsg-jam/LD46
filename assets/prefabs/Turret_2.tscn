@@ -2,7 +2,8 @@
 
 [ext_resource path="res://assets/textures/turrets/turrets.tres" type="Texture" id=1]
 [ext_resource path="res://assets/scripts/TurretControl.gd" type="Script" id=2]
-[ext_resource path="res://assets/prefabs/ui/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/prefabs/ui/UpgradeDisplay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/prefabs/ui/HealthBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.83787
@@ -14,10 +15,12 @@ radius = 125.0
 [node name="Turret" type="KinematicBody2D" groups=[
 "turrets",
 ]]
-position = Vector2( 50, 0 )
 collision_layer = 8
 collision_mask = 103
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 health = 200
 level = 2
 bullet_1_range = 15
@@ -33,20 +36,35 @@ upgrade_cost = {
 texture = ExtResource( 1 )
 hframes = 3
 frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Area2D" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
-[node name="HealthBar" parent="." instance=ExtResource( 3 )]
+[node name="UpgradeDisplay" parent="." instance=ExtResource( 3 )]
+margin_top = -38.0
+margin_bottom = -8.0
+[node name="HealthBar" parent="." instance=ExtResource( 4 )]
 health = 125
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="is_dead" from="HealthBar" to="." method="_on_HealthBar_is_dead"]

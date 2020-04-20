@@ -121,3 +121,5 @@ margin_bottom = 0.0
 visible = false
 [connection signal="timeout" from="Manager/Timer" to="Manager" method="_on_Timer_timeout"]
 [connection signal="is_dead" from="Companion/HealthBar" to="Companion" method="_on_HealthBar_is_dead"]
+[connection signal="body_entered" from="Player/InteractionArea" to="Player" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Player/InteractionArea" to="Player" method="_on_InteractionArea_body_exited"]
