@@ -113,3 +113,5 @@ margin_top = 20.0
 margin_right = 0.0
 margin_bottom = 0.0
 [connection signal="timeout" from="Manager/Timer" to="Manager" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Player/InteractionArea" to="Player" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Player/InteractionArea" to="Player" method="_on_InteractionArea_body_exited"]

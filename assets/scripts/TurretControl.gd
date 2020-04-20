@@ -10,6 +10,7 @@ export var bullet_3_range = 1
 export var radius = 5
 
 var companion
+var upgrade_display
 
 export var upgrade_cost = {"wood": 0, "stone": 0, "iron": 0}
 
@@ -22,6 +23,8 @@ var rng := RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	companion = get_tree().current_scene.get_node("Companion")
+	upgrade_display = $UpgradeDisplay
+	
 	rng.randomize()
 
 func create_bullet(bullet, body):

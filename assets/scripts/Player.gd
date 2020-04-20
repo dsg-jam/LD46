@@ -111,25 +111,32 @@ func spawn_turret() -> void:
 	else:
 		print("Not enough items")
 
+func can_upgrade_turret(turret: Node) -> bool:
+	return turret.level < turrets_prefab.size()
+
+func get_turret_upgrade_cost(turret: Node) -> Dictionary:
+	# hacky hack because of the way our upgrade system works.
+	# blame @mineiwik for this!
+	return turrets_prefab[turret.level].instance().upgrade_cost
+
 func try_upgrade_turret(turret) -> void:
-	if turret.level <= 2:
-		var node: Node2D = turrets_prefab[turret.level].instance()
-		if try_remove_items(node.upgrade_cost):
-			node.position = turret.position
-			turret.queue_free()
-			get_tree().current_scene.add_child(node)
-		else:
-			print("Not enough items")
-	else:
+	if not can_upgrade_turret(turret):
 		print("This turret has already lvl 3 :)")
 		return
+
+	var node = turrets_prefab[turret.level].instance()
+	if try_remove_items(node.upgrade_cost):
+		node.position = turret.position
+		turret.queue_free()
+		get_tree().current_scene.add_child(node)
+	else:
+		print("Not enough items")
 
 func try_build_turret() -> void:
 	for body in interaction_area.get_overlapping_bodies():
 		if !body.is_in_group("turrets"):
 			continue
-		var turret = body
-		try_upgrade_turret(turret)
+		try_upgrade_turret(body)
 		return
 	spawn_turret()
 
@@ -141,3 +148,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("player_place_turret"):
 		try_build_turret()
 		return
+
+
+func _on_InteractionArea_body_entered(body: Node) -> void:
+	if body.is_in_group("turrets") and can_upgrade_turret(body):
+		body.upgrade_display.display(get_turret_upgrade_cost(body))
+
+
+func _on_InteractionArea_body_exited(body: Node) -> void:
+	if body.is_in_group("turrets"):
+		body.upgrade_display.hide()

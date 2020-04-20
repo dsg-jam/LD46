@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/fonts/kenney_pixel.tres" type="DynamicFont" id=1]
+
+[node name="Wood" type="Label"]
+modulate = Color( 0.117647, 0.509804, 0.117647, 1 )
+margin_right = 14.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
