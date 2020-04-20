@@ -42,6 +42,9 @@ func _physics_process(delta):
 		elif collider.is_in_group("turrets") and time_combat >= combat_speed:
 			collider.health_bar.reduce_health(damage)
 			time_combat = 0
+		elif collider.is_in_group("resources") and time_combat >= combat_speed:
+			collider.get_parent().remove()
+			time_combat = 0
 		else:
 			time_combat += delta
 
