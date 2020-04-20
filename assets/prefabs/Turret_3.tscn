@@ -27,7 +27,7 @@ bullet_1_range = 7
 bullet_2_range = 15
 bullet_3_range = 12
 upgrade_cost = {
-"iron": 15,
+"iron": 10,
 "stone": 25,
 "wood": 10
 }
