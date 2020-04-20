@@ -15,7 +15,7 @@ func _ready():
 	mine.get_node("InputButton").text = InputMap.get_action_list("player_mine")[0].as_text()
 	mine.get_node("InputInfo").text = "mine resource"
 	place_turret.get_node("InputButton").text = InputMap.get_action_list("player_place_turret")[0].as_text()
-	place_turret.get_node("InputInfo").text = "place turret"
+	place_turret.get_node("InputInfo").text = "place/upgrade turret"
 	
 	first_turret.get_node("InputInfo").text = "Level 1 turret needs:"
 	
