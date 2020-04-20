@@ -4,13 +4,23 @@ const math_utils := preload("math_utils.gd")
 
 export var spawn_radius_min: float
 export var spawn_radius_max: float
-export var max_enemies: int = 10
-export var max_resources: int = 50
+export var max_resources: int
+
+export var enemy_max_group: int
+export var enemy_zone_radius: float
+export var enemy_spawn_safe_time: float
+export var enemy_spawn_increase_exponent: float
+export var enemy_spawn_increase_base: float
+
+var noise := OpenSimplexNoise.new()
 
 const resource_prefab := preload("res://assets/prefabs/Resource.tscn")
 const enemy_prefab := preload("res://assets/prefabs/Enemy.tscn")
 
 var rng := RandomNumberGenerator.new()
+
+onready var player = $"../Player"
+onready var camera = player.get_node("Camera2D")
 
 # Generate a random position whose distance from the origin is between the radius bounds.
 func random_position() -> Vector2:
@@ -21,7 +31,7 @@ var enemy_count := 0
 func _on_Enemy_tree_exiting() -> void:
 	enemy_count -= 1
 
-func spawn_enemy(pos: Vector2) -> void:
+func spawn_enemy(pos: Vector2) -> void:	
 	var node: Node2D = enemy_prefab.instance()
 	node.position = pos
 	
@@ -31,14 +41,38 @@ func spawn_enemy(pos: Vector2) -> void:
 	add_child(node)
 	enemy_count += 1
 
-# Spawn a resource if the resource limit hasn't been reached.
-func maybe_spawn_enemy() -> bool:
-	if enemy_count >= max_enemies:
-		# still enough resources
-		return false
+func get_player_view_radius() -> float:
+	var size: Vector2 = get_viewport().size * camera.zoom
+	return max(size.x, size.y) / 2.0
 
-	spawn_enemy(random_position())
-	return true
+func get_max_enemies() -> int:
+	return pow(enemy_spawn_increase_base, enemy_spawn_increase_exponent * OS.get_system_time_secs()) as int
+
+# Spawn a resource if the resource limit hasn't been reached.
+func maybe_spawn_enemy() -> void:
+	if OS.get_system_time_secs() < enemy_spawn_safe_time:
+		return
+	
+	if enemy_count >= get_max_enemies():
+		return
+
+	var value := noise.get_noise_1d(OS.get_ticks_msec())
+	if value < 0:
+		return
+
+	var count := ceil(value * enemy_max_group)
+	var spawn_radius := count * enemy_zone_radius
+	var view_radius := get_player_view_radius() + spawn_radius
+	var pos: Vector2
+	while true:
+		pos = random_position()
+		var dist2player: float = (player.position - pos).length()
+		if dist2player > view_radius:
+			break
+	
+	for i in count:
+		var enemy_pos := pos + Vector2(rng.randf_range(0, spawn_radius), rng.randf_range(0, spawn_radius))
+		spawn_enemy(enemy_pos)
 
 var resource_count := 0
 
@@ -68,6 +102,8 @@ func maybe_spawn_resource() -> bool:
 
 func _ready() -> void:
 	rng.randomize()
+	noise.seed = rng.randi()
+	noise.period = 128
 
 func _on_Timer_timeout() -> void:
 	maybe_spawn_resource()

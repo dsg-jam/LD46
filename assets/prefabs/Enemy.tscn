@@ -6,8 +6,8 @@
 [ext_resource path="res://assets/prefabs/ui/HealthBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 7.05161
-height = 2.25473
+radius = 2.4
+height = 7.5
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemies",
@@ -21,6 +21,8 @@ texture = ExtResource( 1 )
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4.6 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

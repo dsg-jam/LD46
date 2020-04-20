@@ -41,9 +41,16 @@ __meta__ = {
 [node name="Manager" type="Node" parent="."]
 script = ExtResource( 6 )
 spawn_radius_min = 100.0
-spawn_radius_max = 150.0
+spawn_radius_max = 500.0
+max_resources = 150
+enemy_max_group = 5
+enemy_zone_radius = 30.0
+enemy_spawn_safe_time = 30.0
+enemy_spawn_increase_exponent = 0.25
+enemy_spawn_increase_base = 2.0
 
 [node name="Timer" type="Timer" parent="Manager"]
+wait_time = 0.2
 autostart = true
 
 [node name="Companion" type="KinematicBody2D" parent="."]
