@@ -61,8 +61,6 @@ wait_time = 0.25
 autostart = true
 
 [node name="UpgradeDisplay" parent="." instance=ExtResource( 3 )]
-margin_left = -5.07845
-margin_top = -12.6961
-margin_right = 44.9216
-margin_bottom = 15.3039
+margin_top = -38.0
+margin_bottom = -8.0
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
