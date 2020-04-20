@@ -45,8 +45,8 @@ spawn_radius_max = 500.0
 max_resources = 150
 enemy_max_group = 5
 enemy_zone_radius = 30.0
-enemy_spawn_safe_time = 30.0
-enemy_spawn_increase_exponent = 0.25
+enemy_spawn_safe_time = 22.5
+enemy_spawn_increase_exponent = 0.025
 enemy_spawn_increase_base = 2.0
 
 [node name="Timer" type="Timer" parent="Manager"]

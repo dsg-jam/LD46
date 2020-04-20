@@ -45,15 +45,16 @@ func get_player_view_radius() -> float:
 	var size: Vector2 = get_viewport().size * camera.zoom
 	return max(size.x, size.y) / 2.0
 
-func get_max_enemies() -> int:
-	return pow(enemy_spawn_increase_base, enemy_spawn_increase_exponent * OS.get_system_time_secs()) as int
+func get_max_enemies(secs: float) -> int:
+	return pow(enemy_spawn_increase_base, enemy_spawn_increase_exponent * secs) as int
 
 # Spawn a resource if the resource limit hasn't been reached.
 func maybe_spawn_enemy() -> void:
-	if OS.get_system_time_secs() < enemy_spawn_safe_time:
+	var secs: float = (OS.get_ticks_msec() / 1000.0) - enemy_spawn_safe_time
+	if secs < 0:
 		return
 	
-	if enemy_count >= get_max_enemies():
+	if enemy_count >= get_max_enemies(secs):
 		return
 
 	var value := noise.get_noise_1d(OS.get_ticks_msec())
