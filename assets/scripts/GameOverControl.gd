@@ -22,5 +22,4 @@ func _on_TryAgainButton_pressed():
 
 
 func _on_ExitButton_pressed():
-	# Go back to Main Menu
-	pass # Replace with function body.
+	get_tree().change_scene("res://assets/scenes/MainMenu.tscn")
