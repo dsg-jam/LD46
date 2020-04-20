@@ -23,9 +23,9 @@ __meta__ = {
 }
 health = 250
 level = 3
-bullet_1_range = 10
+bullet_1_range = 7
 bullet_2_range = 15
-bullet_3_range = 7
+bullet_3_range = 12
 upgrade_cost = {
 "iron": 15,
 "stone": 25,
@@ -58,7 +58,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.2
 autostart = true
 
 [node name="UpgradeDisplay" parent="." instance=ExtResource( 3 )]
