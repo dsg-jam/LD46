@@ -3,20 +3,17 @@
 [ext_resource path="res://assets/scripts/InventoryUIManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/kenney_pixel.tres" type="DynamicFont" id=2]
 
-[node name="InventoryUI" type="VBoxContainer"]
+[node name="InventoryUI" type="HBoxContainer"]
 margin_right = 85.0
 margin_bottom = 92.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Item Wood" type="HBoxContainer" parent="."]
-margin_right = 85.0
-margin_bottom = 28.0
+[node name="Names" type="VBoxContainer" parent="."]
+margin_right = 67.0
+margin_bottom = 92.0
 
-[node name="Name" type="Label" parent="Item Wood"]
-margin_right = 60.0
+[node name="Wood" type="Label" parent="Names"]
+margin_right = 67.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
 text = "Wood"
@@ -25,26 +22,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Count" type="Label" parent="Item Wood"]
-margin_left = 64.0
-margin_right = 78.0
-margin_bottom = 28.0
-custom_fonts/font = ExtResource( 2 )
-text = "0"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Item Stone" type="HBoxContainer" parent="."]
+[node name="Stone" type="Label" parent="Names"]
 margin_top = 32.0
-margin_right = 85.0
-margin_bottom = 60.0
-
-[node name="Name" type="Label" parent="Item Stone"]
 margin_right = 67.0
-margin_bottom = 28.0
+margin_bottom = 60.0
 custom_fonts/font = ExtResource( 2 )
 text = "Stone"
 valign = 1
@@ -52,9 +33,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Count" type="Label" parent="Item Stone"]
+[node name="Iron" type="Label" parent="Names"]
+margin_top = 64.0
+margin_right = 67.0
+margin_bottom = 92.0
+custom_fonts/font = ExtResource( 2 )
+text = "Iron"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Values" type="VBoxContainer" parent="."]
 margin_left = 71.0
 margin_right = 85.0
+margin_bottom = 92.0
+
+[node name="Wood" type="Label" parent="Values"]
+modulate = Color( 0.117647, 0.509804, 0.117647, 1 )
+margin_right = 14.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
@@ -64,25 +61,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Item Iron" type="HBoxContainer" parent="."]
-margin_top = 64.0
-margin_right = 85.0
-margin_bottom = 92.0
-
-[node name="Name" type="Label" parent="Item Iron"]
-margin_right = 51.0
-margin_bottom = 28.0
+[node name="Stone" type="Label" parent="Values"]
+modulate = Color( 0.457031, 0.457031, 0.457031, 1 )
+margin_top = 32.0
+margin_right = 14.0
+margin_bottom = 60.0
 custom_fonts/font = ExtResource( 2 )
-text = "Iron"
+text = "0"
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Count" type="Label" parent="Item Iron"]
-margin_left = 55.0
-margin_right = 69.0
-margin_bottom = 28.0
+[node name="Iron" type="Label" parent="Values"]
+modulate = Color( 0.494118, 0.662745, 0.72549, 1 )
+margin_top = 64.0
+margin_right = 14.0
+margin_bottom = 92.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
 align = 2

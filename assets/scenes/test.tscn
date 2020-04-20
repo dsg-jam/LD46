@@ -108,6 +108,8 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource( 8 )]
-margin_right = 49.0
-margin_bottom = 54.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 0.0
+margin_bottom = 0.0
 [connection signal="timeout" from="Manager/Timer" to="Manager" method="_on_Timer_timeout"]
