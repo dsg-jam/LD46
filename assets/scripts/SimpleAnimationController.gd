@@ -4,11 +4,12 @@ export var anim_move: String
 export var anim_idle: String
 
 # move speed required to transition to the 'moving' animation state
-export var move_velocity_threshold: float = 10
+export var move_velocity_threshold: float = 1.0
 # move velocity is multiplied by this factor to get the animation speed
-export var move_speed_factor: float = 1 / 40.0
+export var move_speed_factor: float = 1.0
 
 var initial_flip_h: bool
+var flip_h_bias: bool
 
 func _ready():
 	initial_flip_h = self.flip_h
@@ -30,5 +31,9 @@ func set_velocity(velocity: float) -> void:
 
 func set_velocity_vector(velocity: Vector2) -> void:
 	set_velocity(velocity.length())
+	
+	if velocity.x != 0:
+		flip_h_bias = velocity.x < 0
+		
 	# (initial state) XOR (flip now)
-	self.flip_h = initial_flip_h != (velocity.x < 0)
+	self.flip_h = initial_flip_h != flip_h_bias

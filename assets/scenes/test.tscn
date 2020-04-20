@@ -61,6 +61,8 @@ __meta__ = {
 }
 anim_move = "walk"
 anim_idle = "idle"
+move_velocity_threshold = 0.05
+move_speed_factor = 3.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Companion"]
 position = Vector2( 0, 4 )
