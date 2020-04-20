@@ -54,10 +54,7 @@ func _physics_process(_delta: float) -> void:
 func mine_resource(resource) -> void:
 	var resource_type: String = resource.resource_type
 	var collected: int = resource.collect()
-	print("collected ", collected, " resource(s) of type ", resource_type)
-	var new_count: int = inventory.get(resource_type, 0) + collected
-	inventory[resource_type] = new_count
-	inventory_ui_manager.update_item_count(resource_type, new_count)
+	add_item(resource_type, collected)
 
 func mine_area() -> void:
 	for body in interaction_area.get_overlapping_bodies():
@@ -82,9 +79,33 @@ func has_items(items: Dictionary) -> bool:
 	
 	return true
 
+func _change_item_count(name: String, count: int) -> void:
+	inventory[name] = count
+	inventory_ui_manager.update_item_count(name, count)
+	
+
+func add_item(name: String, count: int) -> int:
+	var new_count = inventory.get(name, 0) + count
+	_change_item_count(name, new_count)
+	return new_count
+
+func remove_item(name: String, count: int) -> void:
+	var new_count = max(0, inventory.get(name, 0) - count)
+	_change_item_count(name, new_count)
+
+func remove_items(items: Dictionary) -> void:
+	for name in items.keys():
+		remove_item(name, items[name])
+
+func try_remove_items(items: Dictionary) -> bool:
+	if has_items(items):
+		remove_items(items)
+		return true
+	return false
+
 func spawn_turret() -> void:
 	var turret = turrets_prefab[0].instance()
-	if has_items(turret.upgrade_cost):
+	if try_remove_items(turret.upgrade_cost):
 		turret.position = self.position + look_direction * build_distance
 		get_tree().current_scene.add_child(turret)
 	else:
@@ -93,7 +114,7 @@ func spawn_turret() -> void:
 func try_upgrade_turret(turret) -> void:
 	if turret.level <= 2:
 		var node: Node2D = turrets_prefab[turret.level].instance()
-		if has_items(node.upgrade_cost):
+		if try_remove_items(node.upgrade_cost):
 			node.position = turret.position
 			turret.queue_free()
 			get_tree().current_scene.add_child(node)
