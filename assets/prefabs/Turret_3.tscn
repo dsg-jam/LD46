@@ -15,8 +15,8 @@ radius = 200.0
 ]]
 position = Vector2( 50, 0 )
 script = ExtResource( 2 )
+health = 250
 level = 3
-combat_speed = 10
 bullet_1_range = 10
 bullet_2_range = 15
 bullet_3_range = 7

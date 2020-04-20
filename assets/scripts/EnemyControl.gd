@@ -9,6 +9,8 @@ export var target_position = Vector2(0, 0)
 var time_combat = INF # Time since last damage
 var is_companion_alive = true
 
+var is_reassigned = false
+
 var rng = RandomNumberGenerator.new()
 var companion
 var animation_player: AnimationPlayer
@@ -18,16 +20,21 @@ func _ready():
 	var count_frames = $Sprite.get_hframes() * $Sprite.get_vframes()
 	rng.randomize()
 	var select_frame = rng.randi_range(0, count_frames-1)
+	damage = rng.randi_range(2, 5)
+	health = rng.randi_range(25, 75)
+	combat_speed = rng.randi_range(1, 3)
 	$Sprite.set_frame(select_frame)
 	companion = get_tree().current_scene.get_node("Companion")
-	target_position = companion.position
 	animation_player = $AnimationPlayer
 
 func _physics_process(delta):
+	var dir
 	if is_companion_alive:
-		var dir = (target_position - position).normalized()
+		if is_reassigned:
+			dir = (target_position - position).normalized()
+		else:
+			dir = (companion.position - position).normalized()
 		var is_collision = move_and_collide(dir*speed*delta)
-
 		if is_collision:
 			var collider = is_collision.get_collider()
 			if collider.get_name() == "Companion" and time_combat >= combat_speed:
@@ -35,6 +42,12 @@ func _physics_process(delta):
 					time_combat = 0
 				else:
 					is_companion_alive = false
+			elif collider.is_in_group("turrets"):
+				if collider.reduce_health(damage):
+					time_combat = 0
+				else:
+					is_reassigned = false
+					collider.remove()
 			else:
 				time_combat += delta
 	else:

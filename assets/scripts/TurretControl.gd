@@ -8,7 +8,8 @@ export var bullet_1_range = 20
 export var bullet_2_range = 5
 export var bullet_3_range = 1
 export var radius = 5
-export var companion_position = Vector2(0, 0)
+
+var companion
 
 export var upgrade_cost = {"wood": 0, "stone": 0, "iron": 0}
 
@@ -20,6 +21,7 @@ var rng := RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	companion = get_tree().current_scene.get_node("Companion")
 	rng.randomize()
 
 func create_bullet(bullet, body):
@@ -33,15 +35,23 @@ func turret_area() -> void:
 		if !body.is_in_group("enemies"):
 			continue
 
-		var enemy = body
-		companion_position = enemy.target_position
-		enemy.target_position = position
+		if not body.is_reassigned:
+			body.target_position = position
+			body.is_reassigned = true
 		
 		var bullet_select = math_utils.rand_selection_weighted(rng, bullet_selection)
 		create_bullet(bullet_select, body)
 		break
 		
 
+func reduce_health(amount):
+	health -= amount
+	if health <= 0:
+		return false
+	return true
+
+func remove():
+	queue_free()
 
 func _on_Timer_timeout():
 	turret_area()
