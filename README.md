@@ -1,19 +1,17 @@
-# LD46
+# MandaTrouble
+
+<img src=".github/cover.png" width="256"></img>
 
 A Ludum Dare 46 game with the theme "Keep it alive".
 
-## Ideas
+You’ve crashed on a mysterious planet. All that was left is you and this yellowish creature that you need to protect in order it stays alive…
 
-- Planting crops and looking after them (Stardew Valley inspired)
+## How to run
 
-- A machinery that needs coal and can be evolved (All credit goes to Factorio)
+Head over to the [latest release](https://github.com/mineiwik/LD46/releases/latest) and download the file suitable for your operating system [MandaTrouble-linux.x86_64](https://github.com/mineiwik/LD46/releases/download/v1.0.0/MandaTrouble-linux.x86_64) for Linux and [MandaTrouble-windows.exe](https://github.com/mineiwik/LD46/releases/download/v1.0.0/MandaTrouble-windows.exe) for Windows (Sorry, no Mac support).
+Once the download has finished you can just go ahead and execute the file and the game *should* start. 
 
-- A tower defense like, sci-fi game:
+## Developer instructions
 
-        The PLAYER crashes with his space ship on swampy (wooden) planet. His companion is a very valuable CHILD
-        The PLAYER needs to protect and KEEP his companion ALIVE by placing turrets
-        and using his personal weapon. In the beginning the players has only a weak droid-like turret.
-        The enemies which can evolve with the time are trying to steal/kill the companion.
-        The player needs to find new material to build better weapons and a better armor for himself but also for the companion.
-        
-        Inspired by 'The Mandalorian'
+The game runs on the [Godot](https://godotengine.org/) game engine.
+You can clone the repository (or download the source code) and import it in Godot to check it out.
