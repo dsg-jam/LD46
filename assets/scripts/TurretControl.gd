@@ -36,8 +36,8 @@ func turret_area() -> void:
 			continue
 
 		if not body.is_reassigned:
-			body.target = self
 			body.is_reassigned = true
+			body.target_position = position
 		
 		var bullet_select = math_utils.rand_selection_weighted(rng, bullet_selection)
 		create_bullet(bullet_select, body)
@@ -49,7 +49,6 @@ func remove_turret() -> void:
 			continue
 
 		if body.is_reassigned:
-			body.target = body.companion
 			body.is_reassigned = false
 	queue_free()
 

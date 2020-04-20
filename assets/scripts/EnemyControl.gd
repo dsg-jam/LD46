@@ -4,7 +4,7 @@ export var health = 100
 export var damage = 20
 export var speed = 50
 export var combat_speed = 1 # Time interval in which enemy hurts the companion
-var target
+var target_position
 var time_combat = INF # Time since last damage
 var is_companion_alive = true
 var is_reassigned = false
@@ -23,12 +23,15 @@ func _ready():
 	combat_speed = rng.randi_range(1, 3)
 	$Sprite.set_frame(select_frame)
 	companion = get_tree().current_scene.get_node("Companion")
-	target = companion
 	animation_player = $AnimationPlayer
 
 func _physics_process(delta):
 	if is_companion_alive:
-		var dir = (target.position - position).normalized()
+		var dir
+		if is_reassigned:
+			dir = (target_position - position).normalized()
+		else:
+			dir = (companion.position - position).normalized()
 		var is_collision = move_and_collide(dir*speed*delta)
 		if is_collision:
 			var collider = is_collision.get_collider()
