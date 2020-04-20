@@ -12,6 +12,8 @@ export var radius = 5
 var companion
 var upgrade_display
 
+onready var health_bar = get_node("HealthBar")
+
 export var upgrade_cost = {"wood": 0, "stone": 0, "iron": 0}
 
 var bullets = [preload("res://assets/prefabs/Bullet_1.tscn"), preload("res://assets/prefabs/Bullet_2.tscn"), preload("res://assets/prefabs/Bullet_3.tscn")]
@@ -34,6 +36,7 @@ func create_bullet(bullet, body):
 	get_tree().current_scene.add_child(node)
 
 func turret_area() -> void:
+	var is_shooting = false
 	for body in $Area2D.get_overlapping_bodies():
 		if !body.is_in_group("enemies"):
 			continue
@@ -42,23 +45,11 @@ func turret_area() -> void:
 			body.is_reassigned = true
 			body.target_position = position
 		
-		var bullet_select = math_utils.rand_selection_weighted(rng, bullet_selection)
-		create_bullet(bullet_select, body)
-		break
+		if not is_shooting:
+			is_shooting = true
+			var bullet_select = math_utils.rand_selection_weighted(rng, bullet_selection)
+			create_bullet(bullet_select, body)
 
-func remove_turret() -> void:
-	for body in $Area2D.get_overlapping_bodies():
-		if !body.is_in_group("enemies"):
-			continue
-
-		if body.is_reassigned:
-			body.is_reassigned = false
-	queue_free()
-
-func reduce_health(amount) -> void:
-	health -= amount
-	if health <= 0:
-		remove_turret()
 
 func remove():
 	queue_free()
@@ -66,3 +57,13 @@ func remove():
 func _on_Timer_timeout():
 	turret_area()
 
+
+
+func _on_HealthBar_is_dead():
+	for body in $Area2D.get_overlapping_bodies():
+		if !body.is_in_group("enemies"):
+			continue
+
+		if body.is_reassigned:
+			body.is_reassigned = false
+	queue_free()

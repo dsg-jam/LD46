@@ -12,6 +12,7 @@ const stone_textures = [
 	preload("res://assets/textures/resources/stone_1.tres"),
 ]
 
+
 export var wood_chance: int = 8
 export var stone_chance: int = 4
 export var iron_chance: int = 1

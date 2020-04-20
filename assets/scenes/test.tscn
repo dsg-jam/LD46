@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/frames/companion.tres" type="SpriteFrames" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/scripts/Manager.gd" type="Script" id=6]
 [ext_resource path="res://assets/scripts/CompanionControl.gd" type="Script" id=7]
 [ext_resource path="res://assets/prefabs/ui/InventoryUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/prefabs/ui/GameOverUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/prefabs/ui/HealthBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -68,6 +70,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="HealthBar" parent="Companion" instance=ExtResource( 10 )]
+
 [node name="Player" type="KinematicBody2D" parent="."]
 collision_mask = 110
 script = ExtResource( 1 )
@@ -112,6 +116,10 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 0.0
 margin_bottom = 0.0
+
+[node name="GameOverUI" parent="CanvasLayer" instance=ExtResource( 9 )]
+visible = false
 [connection signal="timeout" from="Manager/Timer" to="Manager" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Player/InteractionArea" to="Player" method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="Player/InteractionArea" to="Player" method="_on_InteractionArea_body_exited"]
+[connection signal="is_dead" from="Companion/HealthBar" to="Companion" method="_on_HealthBar_is_dead"]

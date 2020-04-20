@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/turrets/turrets.tres" type="Texture" id=1]
 [ext_resource path="res://assets/scripts/TurretControl.gd" type="Script" id=2]
 [ext_resource path="res://assets/prefabs/ui/UpgradeDisplay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/prefabs/ui/HealthBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.83787
@@ -63,4 +64,7 @@ autostart = true
 [node name="UpgradeDisplay" parent="." instance=ExtResource( 3 )]
 margin_top = -38.0
 margin_bottom = -8.0
+[node name="HealthBar" parent="." instance=ExtResource( 4 )]
+health = 150
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="is_dead" from="HealthBar" to="." method="_on_HealthBar_is_dead"]
