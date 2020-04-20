@@ -36,19 +36,27 @@ func turret_area() -> void:
 			continue
 
 		if not body.is_reassigned:
-			body.target_position = position
+			body.target = self
 			body.is_reassigned = true
 		
 		var bullet_select = math_utils.rand_selection_weighted(rng, bullet_selection)
 		create_bullet(bullet_select, body)
 		break
-		
 
-func reduce_health(amount):
+func remove_turret() -> void:
+	for body in $Area2D.get_overlapping_bodies():
+		if !body.is_in_group("enemies"):
+			continue
+
+		if body.is_reassigned:
+			body.target = body.companion
+			body.is_reassigned = false
+	queue_free()
+
+func reduce_health(amount) -> void:
 	health -= amount
 	if health <= 0:
-		return false
-	return true
+		remove_turret()
 
 func remove():
 	queue_free()
