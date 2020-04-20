@@ -1,10 +1,14 @@
 # MandaTrouble
+[![Ludum Dare entry](https://img.shields.io/badge/Ludum%20Dare-MandaTrouble-orange)](https://ldjam.com/events/ludum-dare/46/mandatrouble)
+![GitHub release](https://img.shields.io/github/v/release/mineiwik/LD46)
 
 <img src=".github/cover.png" width="256"></img>
 
 A Ludum Dare 46 game with the theme "Keep it alive".
 
 You’ve crashed on a mysterious planet. All that was left is you and this yellowish creature that you need to protect in order it stays alive…
+
+Check out the Ludum Dare entry [here](https://ldjam.com/events/ludum-dare/46/mandatrouble)
 
 ## How to run
 
