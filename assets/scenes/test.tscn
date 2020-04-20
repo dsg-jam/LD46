@@ -114,9 +114,8 @@ margin_top = 20.0
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="GameOver" type="CanvasLayer" parent="."]
+[node name="GameOverLayer" type="CanvasLayer" parent="."]
 
-[node name="GameOverUI" parent="GameOver" instance=ExtResource( 9 )]
+[node name="GameOverUI" parent="GameOverLayer" instance=ExtResource( 9 )]
 visible = false
-
 [connection signal="timeout" from="Manager/Timer" to="Manager" method="_on_Timer_timeout"]

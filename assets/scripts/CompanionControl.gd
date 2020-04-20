@@ -18,7 +18,7 @@ func reduce_health(amount):
 	return true
 
 func game_over():
-	$"../GameOver/GameOverUI".visible = true
+	$"../GameOverLayer/GameOverUI".visible = true
 
 func _physics_process(_delta):
 	#var dir = Vector2(rng.randi_range(-10,10), rng.randi_range(-10,10)).normalized()
