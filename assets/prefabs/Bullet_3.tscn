@@ -8,6 +8,8 @@ radius = 7.88493
 
 [node name="Bullet" type="KinematicBody2D"]
 position = Vector2( 50, 0 )
+collision_layer = 16
+collision_mask = 34
 script = ExtResource( 2 )
 speed = 100
 damage = 100

@@ -61,6 +61,16 @@ player_place_turret={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="companion"
+2d_physics/layer_4="turrets"
+2d_physics/layer_5="bullets"
+2d_physics/layer_6="resources"
+2d_physics/layer_7="map"
+
 [rendering]
 
 quality/2d/use_pixel_snap=true
