@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/frames/companion.tres" type="SpriteFrames" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/prefabs/ui/InventoryUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/prefabs/ui/GameOverUI.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/prefabs/ui/HealthBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/scripts/InputButtons.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -121,6 +122,22 @@ margin_bottom = 0.0
 
 [node name="GameOverUI" parent="CanvasLayer" instance=ExtResource( 9 )]
 visible = false
+
+[node name="InputButtons" type="VBoxContainer" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -520.0
+margin_top = -120.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_min_size = Vector2( 500, 100 )
+alignment = 2
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="Manager/Timer" to="Manager" method="_on_Timer_timeout"]
 [connection signal="is_dead" from="Companion/HealthBar" to="Companion" method="_on_HealthBar_is_dead"]
 [connection signal="body_entered" from="Player/InteractionArea" to="Player" method="_on_InteractionArea_body_entered"]
